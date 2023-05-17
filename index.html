@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+<!--   Link to dataset: https://www.kaggle.com/code/stpeteishii/life-expectancy-by-country -->
+  <!--   p5.js lib -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.js"></script>
+
+  <!--     bootstrap style -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <!--   your style -->
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" integrity="sha512-7vwxNJ5AzNSzwQ1hz0yJWnnXv5qrKpJ0+SNHwyL1+vncZCzl+IKR+lWhaDfggOBBdJXtXcHt+3Oqz/N+OGOcwQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+  <header>
+    
+  </header>
+  <main role="main" class="container">
+    <h1></h1>
+
+    <!--     D3 VISUAL -->
+    <h1>Global Life Expectancy</h1>
+    <p>My map first visualization displays a world map with darker shades of blue representing higher average life expectancies while lighter blues represent lower life expectancies. The slider can be used to show the progression of map life expectancies and corresponding shades of all countries. An analysis of my map visualization shows the positive trend of life expectancy over the years universally. This is represented by the blue-darkening of almost all countries as the user drags the slider to the right and towards 2019. This trend upwards trend can most likely be explained by advancements in modern medicine.  
+
+  This visualization also shows that life expectancy isn't always dependent on the geographical region in which the country lies. An interesting example of this is Bolivia, a country that, by far, underperforms the regional average, a difference that is explained by it's light shade in a mostly dark colored region of South America. In stark contrast, the country of Morocco greatly outperforms it's region displayed in it's far darker appearance on the map compared to it's lighter surrounding nations.
+
+My second visualization arranges the countries in descending order by life expectancy. The average life expectancy is accompanied with a cartoon image that attempts to reflect that age group in order to distinguish the age ranges by decades ranging from 80s to 50s. This visualization shows that the most common life expectancy range is within the 70s, followed by 60s, 80s and 50s. In addition, the highest life expectancy is of Hong Kong at a staggering 85.4 years, while the lowest is of Chad at 52.8 years. It is unsuprising that many of the countries with the highest life expectancies are of economically prosperous nations, especially those that are a part of the European Union as these countries are less likely to suffer from food scarcity and likely have advanced medical care. In contrast, many of the lower life expectancies are comprised of less developed countries where resources are limited. Many of these countries on the lower end of life expectancy are African countries and countries significantly impacted by wars. </p>
+    <div id="output"></div>
+    <div id="country"></div>
+     <div class="slidecontainer">
+      <span id="minYearLabel"></span>
+      <input type="range" min="1960" max="2019" value="2000" class="slider" id="yearSlider">
+      <span id="maxYearLabel"></span>
+    </div>
+    <svg id="bar-chart"></svg>
+    <div id="myChart" class="svg-container"></div>
+
+    <div class="info-container">
+      <p id="info"></p>
+    </div>
+    <div id="life"></div>
+    <div id="logger"></div>
+   
+  </main>
+
+  <!--   SCRIPTS -->
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://d3js.org/d3-image.v1.min.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+  <!--   your scripts -->
+  <script src="p5_script.js"></script>
+  <script src="d3_script.js"></script>
+  <script src="visualization.js"></script>
+  <script>
+    const minYearLabel = document.getElementById("minYearLabel");
+    const maxYearLabel = document.getElementById("maxYearLabel");
+
+    const slider = document.getElementById("yearSlider");
+    const defaultYear = slider.value;
+    minYearLabel.textContent = slider.min;
+    maxYearLabel.textContent = slider.max;
+
+    slider.addEventListener("input", (event) => {
+const year = event.target.value;
+// Update the value of currentYear and perform other actions
+currentYear = year;
+});
+</script>
+
+  <!--   bootstrap script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+</body>
+</html>
